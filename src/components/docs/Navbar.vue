@@ -3,10 +3,6 @@
     <container>
       View docs for
 
-      <select v-model="sourceChoice">
-        <option v-for="source in sources" :value="source.id" :key="source.id">{{ source.name }}</option>
-      </select>
-
       <transition name="fade" mode="out-in" @enter="updateTagChoice">
         <select v-if="tags" v-model="tagChoice" :key="source.id">
           <option v-for="tag in tags" :value="tag" :key="tag">{{ tag }}</option>
