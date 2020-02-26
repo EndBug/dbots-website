@@ -1,11 +1,13 @@
 <template>
   <header>
     <container>
-      <router-link to="/">discord.js</router-link>
+      <router-link to="/">dbots</router-link>
 
       <nav>
-        <router-link to="/docs">Documentation</router-link><!--
-        --><a :href="`https://github.com/${repository}`">GitHub</a>
+        <router-link to="/docs">Documentation</router-link>
+        <!--
+        -->
+        <a :href="`https://github.com/${repository}`">GitHub</a>
       </nav>
     </container>
   </header>
@@ -19,37 +21,37 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '../styles/theming';
+@import "../styles/theming";
 
-  header {
-    height: 3rem;
-    line-height: 3rem;
-    background: $color-navbar-bg;
+header {
+  height: 3rem;
+  line-height: 3rem;
+  background: $color-navbar-bg;
 
-    a {
-      display: inline-block;
-      padding: 0 16px;
-      text-decoration: none;
+  a {
+    display: inline-block;
+    padding: 0 16px;
+    text-decoration: none;
+    color: white;
+  }
+
+  & .container > a {
+    background: $color-primary;
+    font-size: 1.1rem;
+
+    &:hover {
       color: white;
-    }
-
-    & .container > a {
-      background: $color-primary;
-      font-size: 1.1rem;
-
-      &:hover {
-        color: white;
-        background: darken($color-primary, 10%);
-      }
-    }
-
-    nav {
-      float: right;
-
-      a:hover {
-        color: white;
-        background: darken($color-navbar-bg, 10%);
-      }
+      background: darken($color-primary, 10%);
     }
   }
+
+  nav {
+    float: right;
+
+    a:hover {
+      color: white;
+      background: darken($color-navbar-bg, 10%);
+    }
+  }
+}
 </style>

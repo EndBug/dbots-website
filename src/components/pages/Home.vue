@@ -2,7 +2,7 @@
   <div id="home">
     <slide id="jumbotron">
       <logo :light="true" :konami="konami" id="logo" />
-      <code>npm install discord.js</code><br />
+      <code>npm install dbots</code><br />
     </slide>
 
     <section id="info">
