@@ -4,7 +4,7 @@
       <strong>
         <router-link to="/">dbots</router-link>
       </strong>
-      <p>A powerful library for interacting with the Discord API</p>
+      <p>The universal count poster</p>
       <stats />
       <a href id="dark-mode-link" @click="toggleDarkMode">
         <em class="fa" :class="darkMode ? 'fa-sun-o' : 'fa-moon-o'"></em>
