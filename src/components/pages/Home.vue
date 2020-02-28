@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <slide id="jumbotron">
-      <logo :light="true" :konami="konami" id="logo" />
+      <img src="/static/logo.png" height="300"><br/><br/><br/>
       <code>npm install dbots</code><br />
     </slide>
 
@@ -52,7 +52,6 @@ poster.startInterval(); // starts an interval thats posts to all services every 
 </template>
 
 <script>
-import Logo from '../Logo.vue';
 import Stats from '../Stats.vue';
 import MainSource from '../../data/MainSource';
 
@@ -60,7 +59,6 @@ export default {
   name: 'home',
   props: ['konami'],
   components: {
-    Logo,
     Stats,
   },
 
