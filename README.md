@@ -1,6 +1,10 @@
-# discord.js website
+# dbots website
 
-> The website housing documentation for discord.js
+> The website housing documentation for dbots
+
+## Website source
+
+This website is forked from https://github.com/discordjs/website
 
 ## Project setup
 ```
