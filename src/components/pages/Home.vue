@@ -45,7 +45,6 @@ poster.startInterval(); // starts an interval thats posts to all services every 
 
       <div class="full-info-item">
         <router-link to="/docs" class="big-ass-btn">Get started</router-link>
-        <a href="https://discord.gg/bRCvFy9" class="big-ass-btn discord">Discord</a>
       </div>
     </section>
   </div>
