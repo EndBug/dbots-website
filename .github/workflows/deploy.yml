@@ -4,6 +4,8 @@ on:
     paths:
       - dist/**
       - .github/workflows/deploy.yml
+    branches:
+      - stable
 
 jobs:
   deploy:
@@ -14,5 +16,5 @@ jobs:
 
       - run: git config user.name "${GITHUB_ACTOR}"
       - run: git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      - run: git fetch
+      - run: git fetch && git checkout master && git pull && git checkout stable
       - run: git subtree push --prefix dist origin master
