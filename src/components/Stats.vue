@@ -36,8 +36,8 @@ export default {
 
       const [downloads, stars, contributors] = await Promise.all([
         fetch('https://api.npmjs.org/downloads/range/2013-08-21:2100-08-21/dbots').then(json, noop),
-        fetch('https://api.github.com/repos/Snazzah/dbots.js').then(json, noop),
-        fetch('https://api.github.com/repos/Snazzah/dbots.js/stats/contributors').then(json, noop),
+        fetch('https://api.github.com/repos/dbots-pkg/dbots.js').then(json, noop),
+        fetch('https://api.github.com/repos/dbots-pkg/dbots.js/stats/contributors').then(json, noop),
       ]);
 
       if (downloads) {
