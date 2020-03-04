@@ -1,5 +1,12 @@
 name: Testing
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - src/**
+  pull_request:
+    paths:
+      - src/**
+
 jobs:
   lint:
     name: ESLint
