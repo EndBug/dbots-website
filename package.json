@@ -11,7 +11,7 @@
     "serve": "vue-cli-service serve",
     "serve:production": "vue-cli-service serve --mode production",
     "build": "vue-cli-service build",
-    "dist": "echo Preparing for distribution && npm i && npm run build && git commit -m \"Update dist files\"",
+    "dist": "echo Preparing for distribution... && npm i && npm run build && git add dist && git commit -m \"Update dist files\"",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
