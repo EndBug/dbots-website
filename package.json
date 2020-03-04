@@ -1,8 +1,8 @@
 {
-  "name": "discord.js-website-new",
+  "name": "dbots-website",
   "version": "2.1.0",
-  "description": "The website housing documentation for discord.js",
-  "author": "Amish Shah <amishshah.2k@gmail.com>",
+  "description": "The website housing documentation for dbots",
+  "author": "Federico Grandi <fgrandi30@gmail.com>",
   "contributors": [
     "Schuyler Cebulskie <Gawdl3y@gawdl3y.com>"
   ],
@@ -11,6 +11,7 @@
     "serve": "vue-cli-service serve",
     "serve:production": "vue-cli-service serve --mode production",
     "build": "vue-cli-service build",
+    "dist": "echo Preparing for distribution && npm i && npm run build && git commit -m \"Update dist files\"",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
