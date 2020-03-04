@@ -2,7 +2,8 @@ name: Deploy
 on:
   push:
     paths:
-      - "./dist/**"
+      - dist/**
+      - .github/workflows/deploy.yml
 
 jobs:
   deploy:
