@@ -8,7 +8,7 @@
       </div>
 
       <em id="docs-visibility" class="fa toggle" :class="showPrivate ? 'fa-eye' : 'fa-eye-slash'" :title="togglePrivateLabel" @click="togglePrivate"></em>
-      <em id="docs-brightness" class="fa toggle" :class="darkMode ? 'fa-moon-o' : 'fa-sun-o'" :title="toggleDarkModeLabel" @click="toggleDarkMode"></em>
+      <em id="docs-brightness" class="fa toggle" :class="darkMode ? 'fa-moon' : 'fa-sun'" :title="toggleDarkModeLabel" @click="toggleDarkMode"></em>
 
       <ul>
         <li v-for="(category, categoryID) in docs.custom" :key="categoryID">

@@ -1,3 +1,4 @@
+/* jshint -W084 */
 import { resolve as resolveURL } from 'url';
 
 // Highlights an element with highlight.js, delaying until it's loaded

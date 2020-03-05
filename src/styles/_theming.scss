@@ -13,6 +13,8 @@ $color-content-bg: #fefefe;
 $color-content-bg-dark: #111;
 $color-content-text: #111;
 $color-content-text-dark: #ccc;
+$color-card-hover: darken($color-content-bg, 8%);
+$color-card-hover-dark: lighten($color-content-bg-dark, 8%);
 $color-scrolled-bg: lighten(#F3F321, 10%);
 $color-inactive-border: darken($color-content-bg, 6%);
 $color-inactive-border-dark: lighten($color-content-bg-dark, 6%);
