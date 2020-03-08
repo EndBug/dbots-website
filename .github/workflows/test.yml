@@ -43,3 +43,11 @@ jobs:
 
       - name: Test site build
         run: yarn build
+
+      - name: Commit changes if build has been successfull
+        uses: EndBug/add-and-commit@v4
+        with:
+          add: dist
+          message: "[auto] Commit dist"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
