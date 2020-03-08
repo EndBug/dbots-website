@@ -51,7 +51,15 @@ export default {
       }
 
       // Set the tag, or redirect to a default route
-      if (route.params.tag) {
+      if (route.params.tag === 'latest') {
+        this.setTag(this.source.defaultTag);
+        this.$router.replace({ name: 'docs-file', params: {
+          source: this.source.id,
+          tag: this.source.defaultTag,
+          category: this.source.defaultFile.category,
+          file: this.source.defaultFile.id,
+        } });
+      } else if (route.params.tag) {
         this.setTag(route.params.tag);
       } else {
         this.$router.replace({ name: 'docs-file', params: {
