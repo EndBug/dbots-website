@@ -45,7 +45,7 @@ jobs:
       - name: Test site build
         run: yarn build
 
-      - name: Commit changes if build has been successfull
+      - name: Commit changes if build has been successful
         uses: EndBug/add-and-commit@v4
         with:
           add: dist
