@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import HomePage from './components/pages/Home.vue';
-import ServicesPage from './components/pages/ServicesPage.vue';
 import DocumentationPage from './components/pages/Documentation.vue';
 import UnknownRoutePage from './components/pages/UnknownRoute.vue';
 import DocsLoader from './components/docs/Loader.vue';
@@ -16,7 +15,7 @@ Vue.use(Router);
 export default new Router({
   routes: [
     { path: '/', name: 'home', component: HomePage },
-    { path: '/services', name: 'services', component: ServicesPage },
+    { path: '/services', name: 'services', redirect: '/docs/main/latest/general/services' },
     {
       path: '/docs',
       name: 'docs',
