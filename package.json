@@ -12,8 +12,9 @@
     "serve": "vue-cli-service serve",
     "serve:production": "vue-cli-service serve --mode production",
     "build": "vue-cli-service build",
-    "dist": "echo Preparing for distribution... && npm i && npm run build && git add dist && git commit -m \"Update dist files\"",
-    "lint": "vue-cli-service lint"
+    "dist": "echo Preparing for distribution... && npm i && npm run build && git add dist --force && git commit -m \"Update dist files\"",
+    "lint": "vue-cli-service lint",
+    "test": "if test \"$NODE_ENV\" = \"workflow\"; then echo ok; else echo no; fi"
   },
   "dependencies": {
     "core-js": "^2.6.5",
