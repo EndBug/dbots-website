@@ -10,5 +10,5 @@ export default new DocsSource({
   defaultTag: 'latest',
   branchFilter: branch =>
     !branchBlacklist.has(branch) && !branch.startsWith('dependabot/'),
-  tagFilter: tag => tag !== 'latest' && semver.gt(tag.replace(/^v/, ''), '1.3.0'),
+  tagFilter: tag => tag === 'latest' || semver.gt(tag.replace(/^v/, ''), '1.2.9'),
 });
