@@ -1,9 +1,6 @@
 name: Deploy
 on:
   push:
-    paths:
-      - dist/**
-      - .github/workflows/deploy.yml
     branches:
       - stable
 
