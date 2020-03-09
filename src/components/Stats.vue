@@ -5,7 +5,7 @@
       <span>Downloads</span>
     </div>
     <a href="https://bundlephobia.com/result?p=dbots" class="stat-card">
-      <h3>{{ (size / 1000).toFixed(1) }}</h3>
+      <h3>{{ size }}</h3>
       <span>Kilobytes</span>
     </a>
     <a href="https://github.com/dbots-pkg/dbots.js/stargazers" class="stat-card">
@@ -103,7 +103,7 @@ export default {
         fetch('https://api.npms.io/v2/package/dbots').then(json, noop),
         fetch(
           'https://bundlephobia.com/api/size?package=dbots&record=true'
-        ).then(json, noop),
+        ).then(json, noop, s => (s / 1000).toFixed(1)),
       ]);
 
       if (downloads) {
