@@ -7,8 +7,8 @@ export default new DocsSource({
   name: 'Main library',
   global: 'dbots',
   repo: 'dbots-pkg/dbots.js',
-  defaultTag: 'v1.3.0',
+  defaultTag: 'latest',
   branchFilter: branch =>
     !branchBlacklist.has(branch) && !branch.startsWith('dependabot/'),
-  tagFilter: tag => tag === 'latest' || semver.gt(tag.replace(/^v/, ''), '1.3.0'),
+  tagFilter: tag => tag !== 'latest' && semver.gt(tag.replace(/^v/, ''), '1.3.0'),
 });
