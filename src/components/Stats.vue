@@ -103,37 +103,40 @@ export default {
         fetch('https://api.npms.io/v2/package/dbots').then(json, noop),
         fetch(
           'https://bundlephobia.com/api/size?package=dbots&record=true'
-        ).then(json, noop, s => (s / 1000).toFixed(1)),
+        ).then(json, noop),
       ]);
 
       if (downloads) {
         this.downloads = 0;
-        for (const item of downloads.downloads) this.downloads += item.downloads;
+        for (const item of downloads.downloads)
+          this.downloads += item.downloads;
         this.downloads = this.downloads.toLocaleString();
       }
 
       if (github) {
         this.stars = github.stargazers_count.toLocaleString();
         this.watchers = github.watchers_count.toLocaleString();
-        if (github.forks) this.forks = github.forks.toLocaleString();
-        if (github.open_issues_count) this.openIssues = github.open_issues_count.toLocaleString();
+        if (github.forks)
+          this.forks = github.forks.toLocaleString();
+        if (github.open_issues_count)
+          this.openIssues = github.open_issues_count.toLocaleString();
       }
 
-      if (contributors) this.contributors = contributors.length.toLocaleString();
+      if (contributors)
+        this.contributors = contributors.length.toLocaleString();
 
-      if (commiters) {
+      if (commiters)
         this.commits = commiters
           .reduce((prev, val) => prev + val.contributions, 0)
           .toLocaleString();
-      }
 
-      if (versions) {
+      if (versions)
         this.versions = versions.collected.metadata.releases
           .reverse()[0]
           .count.toLocaleString();
-      }
 
-      if (size) this.size = size.size;
+      if (size)
+        this.size = (size.size / 1000).toFixed(1);
     },
   },
 };
