@@ -16,6 +16,10 @@
       <h3>{{ contributors }}</h3>
       <span>Contributors</span>
     </a>
+    <a v-if="usedBy" href="https://github.com/dbots-pkg/dbots.js/network/dependents?package_id=UGFja2FnZS0zNzA1MzQ1MA%3D%3D" class="stat-card">
+      <h3>{{ usedBy }}</h3>
+      <span>GitHub repos using dbots.js</span>
+    </a>
     <a href="https://github.com/dbots-pkg/dbots.js/commits/master" class="stat-card">
       <h3>{{ commits }}</h3>
       <span>Commits to master</span>
@@ -58,6 +62,7 @@ const data = {
   forks: '',
   commits: '100+',
   versions: '10+',
+  usedBy: '10+',
   size: '~24',
   fetching: false,
 };
@@ -86,6 +91,7 @@ export default {
         commiters,
         versions,
         size,
+        usedBy,
       ] = await Promise.all([
         fetch(
           'https://api.npmjs.org/downloads/range/2013-08-21:2100-08-21/dbots'
@@ -104,6 +110,7 @@ export default {
         fetch(
           'https://bundlephobia.com/api/size?package=dbots&record=true'
         ).then(json, noop),
+        fetch('https://api.snaz.in/v2/github/used-by/dbots-pkg/dbots.js').then(json, noop),
       ]);
 
       if (downloads) {
@@ -137,6 +144,9 @@ export default {
 
       if (size)
         this.size = (size.size / 1000).toFixed(1);
+
+      if (usedBy)
+        this.usedBy = usedBy.used_by.value.toLocaleString();
     },
   },
 };
