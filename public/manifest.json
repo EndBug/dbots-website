@@ -1,7 +1,7 @@
 {
-  "name": "Dbots Documentation",
-  "short_name": "Dbots Docs",
-  "theme_color": "#00b2e8",
+  "name": "dbots.js Documentation",
+  "short_name": "dbots.js Docs",
+  "theme_color": "#fc7b03",
   "background_color": "#2f3236",
   "display": "browser",
   "Scope": "/",

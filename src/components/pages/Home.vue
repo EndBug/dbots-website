@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <slide id="jumbotron">
-      <img src="/static/logo.png">
+      <Logo />
       <br>
       <br>
       <br>
@@ -19,7 +19,7 @@
     <section id="info">
       <div class="info-item">
         <h2>About</h2>
-        <p>dbots is a package that allows you to automatically post your bot stats to multiple bot lists.</p>
+        <p>dbots.js is a package that allows you to automatically post your bot stats to multiple bot lists.</p>
         <p>The module also provides some interfaces for other requests to the list APIs, so that everything can be done with the same package, instead of having to make the requests youself or dealing with multiple packages.</p>
       </div>
 
@@ -29,7 +29,7 @@
 const client = new Discord.Client();
 const dbots = require('dbots');
 const poster = new dbots.Poster({
-    client, // Client MUST be logged in to be put into a poster
+    client,
     apiKeys: {
         discordbotsgg: '…',
         topgg: '…',
@@ -60,6 +60,7 @@ poster.startInterval(); // starts an interval thats posts to all services every 
 
 <script>
 import Stats from '../Stats.vue';
+import Logo from '../Logo.vue';
 import MainSource from '../../data/MainSource';
 
 export default {
@@ -67,6 +68,7 @@ export default {
   props: ['konami'],
   components: {
     Stats,
+    Logo,
   },
 
   mounted() {
@@ -150,26 +152,29 @@ export default {
     flex: 0 0 100%;
     padding: 80px 16px;
     overflow: hidden;
-    background-color: $color-primary;
-    background-image: linear-gradient(
-      top,
-      $color-primary,
-      darken($color-primary, 15%)
-    );
+    background-color: #ededed;
 
-    img {
-      width: 100%;
-      max-height: 300px;
-      max-width: 369px;
-      @include prefix(animation, fadeInDown ease 1s);
+    #app.dark & {
+      background: lighten($color-content-bg-dark, 20%);
 
-      @include mq($until: 416px) {
-        width: 100%;
-        height: unset;
+      .below-command span {
+        color: white;
       }
 
-      #app.konami & {
-        @include prefix(animation, logo-konami linear 1s infinite);
+      .cli-command {
+        code {
+          background: $color-content-bg-dark;
+          color: $color-content-text-dark;
+        }
+
+        em {
+          background: lighten($color-content-bg-dark, 10%);
+          color: $color-content-text-dark;
+
+          &:hover {
+            background: lighten($color-content-bg-dark, 15%);
+          }
+        }
       }
     }
 
@@ -177,35 +182,35 @@ export default {
       display: inline-block;
       border-radius: 5px;
       overflow: hidden;
-      @include prefix(animation, fadeInUp ease 1s);
+      @include prefix(animation, cliFadeInUp ease 1s);
 
       code {
         padding: 16px;
-        background: #f5f5f5;
+        background: darken($color-content-bg, 15%);
         color: $color-content-text;
         font-family: $font-monospace;
       }
 
       em {
         padding: 16px;
-        background: #e2e2e2;
+        background: darken($color-content-bg, 20%);
         color: $color-content-text;
         @include prefix(transition, background 0.2s ease);
         cursor: pointer;
 
         &:hover {
-          background: #b9b9b9;
+          background: darken($color-content-bg, 25%);
           @include prefix(transition, background 0.2s ease);
         }
       }
     }
 
     .below-command {
-      @include prefix(animation, fadeInUp ease 1s);
+      @include prefix(animation, cliFadeInUp ease 1s);
 
       span {
         font-family: monospace;
-        color: white;
+        color: black;
         cursor: pointer;
 
         &:hover {
@@ -290,39 +295,16 @@ export default {
   }
 }
 
-@include keyframes(logo-konami) {
-  from {
-    @include prefix(filter, contrast(0.4) sepia() drop-shadow(0 0 10px white) brightness(1.5) hue-rotate(0deg));
-  }
-  50% {
-    @include prefix(filter, contrast(0.4) sepia() drop-shadow(0 0 20px white) brightness(1.5) hue-rotate(180deg));
-  }
-  to {
-    @include prefix(filter, contrast(0.4) sepia() drop-shadow(0 0 10px white) brightness(1.5) hue-rotate(360deg));
-  }
-}
 
-@include keyframes(fadeInDown) {
+@include keyframes(cliFadeInUp) {
   from {
     opacity: 0;
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, 20px, 0);
   }
 
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@include keyframes(fadeInUp) {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0);
   }
 }
 </style>

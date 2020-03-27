@@ -1,7 +1,7 @@
 <template>
   <header>
     <container>
-      <router-link to="/">dbots</router-link>
+      <router-link to="/">dbots.js</router-link>
 
       <nav>
         <router-link to="/docs">Documentation</router-link>
