@@ -99,9 +99,8 @@ export default {
 
     $route(to) {
       if (this.visible) this.visible = false;
-      if (!to.query.scrollTo && (window.pageYOffset || document.documentElement.scrollTop) > 300) {
+      if (!to.query.scrollTo && (window.pageYOffset || document.documentElement.scrollTop) > 300)
         window.scrollTo(0, 90);
-      }
     },
   },
 };

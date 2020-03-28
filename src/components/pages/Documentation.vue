@@ -38,9 +38,9 @@ export default {
 
     handleRoute(route) {
       // Set the source, or redirect to a default route
-      if (route.params.source && this.sources[route.params.source]) {
+      if (route.params.source && this.sources[route.params.source])
         this.setSource(route.params.source);
-      } else {
+      else {
         this.$router.replace({ name: 'docs-file', params: {
           source: MainSource.id,
           tag: MainSource.defaultTag,
@@ -51,9 +51,9 @@ export default {
       }
 
       // Set the tag, or redirect to a default route
-      if (route.params.tag) {
+      if (route.params.tag)
         this.setTag(route.params.tag);
-      } else {
+      else {
         this.$router.replace({ name: 'docs-file', params: {
           source: this.source.id,
           tag: this.source.recentTag || this.source.defaultTag,
@@ -64,14 +64,13 @@ export default {
       }
 
       // Redirect to a default route
-      if (!route.params.file && !route.params.class && !route.params.typedef && route.name !== 'docs-search') {
+      if (!route.params.file && !route.params.class && !route.params.typedef && route.name !== 'docs-search')
         this.$router.replace({ name: 'docs-file', params: {
           source: this.source.id,
           tag: this.tag,
           category: this.source.defaultFile.category,
           file: this.source.defaultFile.id,
         } });
-      }
     },
 
     toggleDarkMode() {

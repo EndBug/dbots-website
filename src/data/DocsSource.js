@@ -37,20 +37,20 @@ export default class DocsSource {
       this.tags = [this.defaultTag];
       localStorage[`source-${this.id}`] = JSON.stringify({ branches, tags });
 
-      for (const branch of branches) {
+      for (const branch of branches)
         if (branch.name !== this.defaultTag && this.branchFilter(branch.name)) this.tags.push(branch.name);
-      }
+
 
       // Build a list of the latest patch versions
       const latestPatches = {};
-      for (const tag of tags) {
+      for (const tag of tags)
         if (semver.valid(tag.name)) {
           const majorMinor = `${semver.major(tag.name)}.${semver.minor(tag.name)}`;
           const patch = semver.patch(tag.name);
           if (patch < latestPatches[majorMinor]) continue;
           latestPatches[majorMinor] = patch;
         }
-      }
+
 
       // Build the list of tags
       for (const tag of tags) {

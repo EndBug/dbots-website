@@ -89,9 +89,9 @@ export default {
         for (const t of docs.typedefs) docs.links[t.name] = { name: 'docs-typedef', params: { typedef: t.name } };
 
         // Workaround for the single use of inter-source see also linking
-        if (this.source.id === 'commando') {
+        if (this.source.id === 'commando')
           docs.links.Message = { name: 'docs-class', params: { source: 'main', tag: 'master', class: 'Message' } };
-        }
+
 
         docs.global = this.source.global;
         docs.source = this.source.source;
@@ -108,11 +108,10 @@ export default {
             if (!docs.classes.some(c => c.name === route.params.class)) this.goHome();
           } else if (route.name === 'docs-typedef') {
             if (!docs.typedefs.some(t => t.name === route.params.typedef)) this.goHome();
-          } else if (route.name === 'docs-file') {
+          } else if (route.name === 'docs-file')
             if (!docs.custom[route.params.category] || !docs.custom[route.params.category].files[route.params.file]) {
               this.goHome();
             }
-          }
         }
       }).catch(err => {
         console.error('Error while loading', startSource, startTag, err);

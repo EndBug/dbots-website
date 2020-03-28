@@ -3,9 +3,9 @@ import { resolve as resolveURL } from 'url';
 
 // Highlights an element with highlight.js, delaying until it's loaded
 export function hljs(el) {
-  if (window.hljs) {
+  if (window.hljs)
     window.hljs.highlightBlock(el);
-  } else {
+  else {
     let attempts = 0;
     const interval = setInterval(() => {
       if (window.hljs) {
@@ -32,7 +32,7 @@ export function parseLink(link, docs) {
 
   // Type link
   const split = link.split(/(\.|#)/);
-  if (docs.links[split[0]]) {
+  if (docs.links[split[0]])
     return {
       text: text || link,
       link: typeof docs.links[split[0]] === 'object' ? {
@@ -41,15 +41,15 @@ export function parseLink(link, docs) {
         query: { scrollTo: split[1] ? `${split[1] === '.' ? 's-' : ''}${split[2]}` : undefined },
       } : docs.links[split[0]],
     };
-  }
+
 
   // Any link
-  if (link.match(/^https?:\/\//i)) {
+  if (link.match(/^https?:\/\//i))
     return {
       text: text || link,
       link: link,
     };
-  }
+
 
   // Plain text
   return { text: text || link };
@@ -75,13 +75,13 @@ export function convertLinks(text, docs, router, route) {
         parsed.link.params.source = route.params.source;
         parsed.link.params.tag = route.params.tag;
         link = router.resolve(parsed.link).href;
-      } else {
+      } else
         link = parsed.link;
-      }
+
       newText += `[${parsed.text}](${link})`;
-    } else {
+    } else
       newText += parsed.text;
-    }
+
 
     start = match.index + match[0].length;
   }

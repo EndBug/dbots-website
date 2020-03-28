@@ -112,14 +112,13 @@ export default {
 
   mounted() {
     if (this.darkMode) this.$el.classList.add('dark');
-    if (!konami) {
+    if (!konami)
       konami = new Konami(() => {
         this.konami = true;
         this.poop();
         this.$el.classList.add('konami');
         konami.disable();
       });
-    }
   },
 };
 </script>
