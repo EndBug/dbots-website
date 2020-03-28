@@ -1,30 +1,53 @@
 <template>
   <div id="docs-search" class="docs-page">
-    <em id="show-scores" :class="`fa fa-bar-chart ${!showScores ? 'disabled' : ''}`" :title="toggleScoresLabel" @click="toggleScores"></em>
+    <em
+      id="show-scores"
+      :class="`fa fa-bar-chart ${!showScores ? 'disabled' : ''}`"
+      :title="toggleScoresLabel"
+      @click="toggleScores"
+    ></em>
 
     <h1>Search</h1>
     <input v-model.trim="search" type="search" />
 
     <div id="toggles">
-      <label><input type="checkbox" v-model="toggles['classes']" /> Classes</label>
-      <label><input type="checkbox" v-model="toggles['props']" /> Properties</label>
-      <label><input type="checkbox" v-model="toggles['methods']" /> Methods</label>
-      <label><input type="checkbox" v-model="toggles['events']" /> Events</label>
-      <label><input type="checkbox" v-model="toggles['typedefs']" /> Typedefs</label>
+      <label>
+        <input type="checkbox" v-model="toggles['classes']" /> Classes
+      </label>
+      <label>
+        <input type="checkbox" v-model="toggles['props']" /> Properties
+      </label>
+      <label>
+        <input type="checkbox" v-model="toggles['methods']" /> Methods
+      </label>
+      <label>
+        <input type="checkbox" v-model="toggles['events']" /> Events
+      </label>
+      <label>
+        <input type="checkbox" v-model="toggles['typedefs']" /> Typedefs
+      </label>
     </div>
 
     <transition name="fade" mode="out-in">
       <div v-if="search && search.length >= 2">
         <transition name="fade" mode="out-in">
           <transition-group name="fade" v-if="results.length">
-            <div v-if="fullMatches.length" :class="{ 'results-separator': fullMatches.length && partialMatches.length }" key="fullMatches">
+            <div
+              v-if="fullMatches.length"
+              :class="{ 'results-separator': fullMatches.length && partialMatches.length }"
+              key="fullMatches"
+            >
               <h2>Results for "{{ search }}"</h2>
               <search-results :results="fullMatches" :showScores="showScores" :searchTerm="search"></search-results>
             </div>
 
             <div v-if="partialMatches.length" key="partialMatches">
               <h2>Similar results for "{{ search }}"</h2>
-              <search-results :results="partialMatches" :showScores="showScores" :searchTerm="search"></search-results>
+              <search-results
+                :results="partialMatches"
+                :showScores="showScores"
+                :searchTerm="search"
+              ></search-results>
             </div>
           </transition-group>
 
@@ -141,13 +164,13 @@ export default {
     },
 
     // Build an array of all doc items with minimal data
-    buildFuse(toggles) {
+    buildFuse(toggles) { // eslint-disable-line complexity
       const items = [];
 
       for (const c of this.docs.classes) {
         if (!this.showPrivate && c.access === 'private') continue;
 
-        if (toggles.classes) {
+        if (toggles.classes)
           items.push({
             type: 'Class',
             parent: c.name,
@@ -157,9 +180,9 @@ export default {
             access: c.access,
             route: null,
           });
-        }
 
-        if (c.props && toggles.props) {
+
+        if (c.props && toggles.props)
           for (const p of c.props) {
             if (!this.showPrivate && p.access === 'private') continue;
             items.push({
@@ -172,9 +195,9 @@ export default {
               route: null,
             });
           }
-        }
 
-        if (c.methods && toggles.methods) {
+
+        if (c.methods && toggles.methods)
           for (const m of c.methods) {
             if (!this.showPrivate && m.access === 'private') continue;
             items.push({
@@ -187,9 +210,9 @@ export default {
               route: null,
             });
           }
-        }
 
-        if (c.events && toggles.events) {
+
+        if (c.events && toggles.events)
           for (const e of c.events) {
             if (!this.showPrivate && e.access === 'private') continue;
             items.push({
@@ -203,10 +226,9 @@ export default {
               route: null,
             });
           }
-        }
       }
 
-      if (toggles.typedefs) {
+      if (toggles.typedefs)
         for (const t of this.docs.typedefs) {
           if (!this.showPrivate && t.access === 'private') continue;
           items.push({
@@ -219,7 +241,7 @@ export default {
             route: null,
           });
         }
-      }
+
 
       return new Fuse(items, {
         keys: [
@@ -266,96 +288,96 @@ function fullName(child, parentName) {
 </script>
 
 <style lang="scss">
-  @import '../../styles/theming';
-  @import '../../styles/mq';
+@import "../../styles/theming";
+@import "../../styles/mq";
 
-  #docs-search {
-    padding: 16px 32px;
+#docs-search {
+  padding: 16px 32px;
 
-    input[type="search"] {
-      margin: 4px 2px;
-      width: 16rem;
-      max-width: 100%;
+  input[type="search"] {
+    margin: 4px 2px;
+    width: 16rem;
+    max-width: 100%;
 
-      @include mq($from: tablet) {
-        display: none;
-      }
-    }
-
-    #show-scores {
-      display: block;
-      float: right;
-      cursor: pointer;
-      color: $color-primary;
-      transition: color 0.3s;
-
-      &.disabled {
-        color: $color-content-text;
-
-        &:hover {
-          color: lighten($color-content-text, 50%);
-        }
-      }
-
-      &:hover {
-        color: lighten($color-primary, 20%);
-      }
-    }
-
-    #toggles {
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      margin-top: 4px;
-
-      label {
-        flex: 1;
-        margin: 4px;
-      }
-
-      input {
-        position: relative;
-        top: 2px;
-        margin-right: 2px;
-      }
-
-      @include mq($until: desktop) {
-        flex-direction: column;
-      }
-    }
-
-    a {
-      display: inline-block;
-      height: 100%;
-
-      &:hover .badge {
-        background: lighten($color-primary, 20%);
-      }
-    }
-
-    .results-separator {
-      padding-bottom: 10px;
-      border-bottom: 1px solid darken($color-inactive-border, 5%);
+    @include mq($from: tablet) {
+      display: none;
     }
   }
 
-  #app.dark #docs-search {
-    #show-scores {
-      &.disabled {
-        color: darken($color-content-text-dark, 5%);
+  #show-scores {
+    display: block;
+    float: right;
+    cursor: pointer;
+    color: $color-primary;
+    transition: color 0.3s;
 
-        &:hover {
-          color: lighten($color-content-text-dark, 20%);
-        }
-      }
+    &.disabled {
+      color: $color-content-text;
 
       &:hover {
-        color: lighten($color-primary, 20%);
+        color: lighten($color-content-text, 50%);
       }
     }
 
-    .results-separator {
-      border-color: $color-inactive-border-dark;
+    &:hover {
+      color: lighten($color-primary, 20%);
     }
   }
+
+  #toggles {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-top: 4px;
+
+    label {
+      flex: 1;
+      margin: 4px;
+    }
+
+    input {
+      position: relative;
+      top: 2px;
+      margin-right: 2px;
+    }
+
+    @include mq($until: desktop) {
+      flex-direction: column;
+    }
+  }
+
+  a {
+    display: inline-block;
+    height: 100%;
+
+    &:hover .badge {
+      background: lighten($color-primary, 20%);
+    }
+  }
+
+  .results-separator {
+    padding-bottom: 10px;
+    border-bottom: 1px solid darken($color-inactive-border, 5%);
+  }
+}
+
+#app.dark #docs-search {
+  #show-scores {
+    &.disabled {
+      color: darken($color-content-text-dark, 5%);
+
+      &:hover {
+        color: lighten($color-content-text-dark, 20%);
+      }
+    }
+
+    &:hover {
+      color: lighten($color-primary, 20%);
+    }
+  }
+
+  .results-separator {
+    border-color: $color-inactive-border-dark;
+  }
+}
 </style>
