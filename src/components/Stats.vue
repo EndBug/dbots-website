@@ -94,21 +94,21 @@ export default {
         usedBy,
       ] = await Promise.all([
         fetch(
-          'https://api.npmjs.org/downloads/range/2013-08-21:2100-08-21/dbots'
+          'https://api.npmjs.org/downloads/range/2013-08-21:2100-08-21/dbots',
         ).then(json, noop),
         fetch('https://api.github.com/repos/dbots-pkg/dbots.js').then(
           json,
-          noop
+          noop,
         ),
         fetch(
-          'https://api.github.com/repos/dbots-pkg/dbots.js/stats/contributors'
+          'https://api.github.com/repos/dbots-pkg/dbots.js/stats/contributors',
         ).then(json, noop),
         fetch(
-          'https://api.github.com/repos/dbots-pkg/dbots.js/contributors'
+          'https://api.github.com/repos/dbots-pkg/dbots.js/contributors',
         ).then(json, noop),
         fetch('https://api.npms.io/v2/package/dbots').then(json, noop),
         fetch(
-          'https://bundlephobia.com/api/size?package=dbots&record=true'
+          'https://bundlephobia.com/api/size?package=dbots&record=true',
         ).then(json, noop),
         fetch('https://api.snaz.in/v2/github/used-by/dbots-pkg/dbots.js').then(json, noop),
       ]);
